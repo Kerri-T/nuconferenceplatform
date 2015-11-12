@@ -12,8 +12,8 @@
                       $location.path('/');
 
                       $alert({
-                          title: 'Cheers!',
-                          content: 'You have successfully logged in.',
+                          title: 'Success!',
+                          content: 'You are now logged in.',
                           placement: 'top-right',
                           type: 'success',
                           duration: 3
