@@ -116,17 +116,3 @@ app.get('/api/logout', function (req, res, next) {
     req.logout();
     res.send(200);
 });
-app.get('/api/events', function (req, res, next) {
-    var query = Show.find();
-    if (req.query.genre) {
-        query.where({ genre: req.query.genre });
-    } else if (req.query.alphabet) {
-        query.where({ name: new RegExp('^' + '[' + req.query.alphabet + ']', 'i') });
-    } else {
-        query.limit(12);
-    }
-    query.exec(function (err, shows) {
-        if (err) return next(err);
-        res.send(shows);
-    });
-});
