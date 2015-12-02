@@ -5,6 +5,7 @@
               fname: $scope.fname,
               lname: $scope.lname,
               email: $scope.email,
+              attendeetype: $scope.attendeetype,
               organization: $scope.organization,
               password: $scope.password
           });

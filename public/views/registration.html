@@ -1,4 +1,4 @@
-<div class="container" >
+<div class="container">
     <br />
 
     <div class="row">
@@ -15,7 +15,6 @@
                         <div class="help-block text-danger" ng-if="registerForm.email.$dirty"
                              ng-messages="registerForm.email.$error">
                             <div ng-message="required">Your first name is required.</div>
-                            <div ng-message="email">Your first name is invalid.</div>
                         </div>
                     </div>
                     <div class="form-group"
@@ -27,7 +26,6 @@
                         <div class="help-block text-danger" ng-if="registerForm.email.$dirty"
                              ng-messages="registerForm.email.$error">
                             <div ng-message="required">Your last name is required.</div>
-                            <div ng-message="email">Your last name is invalid.</div>
                         </div>
                     </div>
                     <div class="form-group"
@@ -39,7 +37,6 @@
                         <div class="help-block text-danger" ng-if="registerForm.email.$dirty"
                              ng-messages="registerForm.email.$error">
                             <div ng-message="required">Your organization is required.</div>
-                            <div ng-message="email">Your organization is invalid.</div>
                         </div>
                     </div>
                     <div class="form-group"
@@ -80,7 +77,34 @@
                             <div ng-message="repeat">Passwords do not match.</div>
                         </div>
                     </div>
+                    <div class="form-group" ng-class="{ 'has-success' : registerForm.attendeetype.$valid && registerForm.attendeetype.$dirty, 'has-error' : registerForm.attendeetype.$invalid && registerForm.attendeetype.$dirty }">
+                        <p class="lead">I am a:</p>
+                        <ul style="list-style-type:none">
 
+                            <li>
+                                <label>
+                                    <input type="radio" ng-model="attendeetype" value="Presenter">
+                                    Presenter
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" ng-model="attendeetype" ng-value="Keynote Speaker">
+                                    Keynote Speaker
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" ng-model="attendeetype" value="Attendee">
+                                    Attendee
+                                </label>
+                            </li>
+                        </ul>
+                        <div class="help-block text-danger" ng-if="registerForm.attendeetype.$dirty"
+                             ng-messages="registerForm.attendeetype.$error">
+                            <div ng-message="required">Please select one of the attendee options.</div>
+                        </div>
+                    </div>
                     <button type="submit" ng-disabled="registerForm.$invalid"
                             class="btn btn-lg btn-block btn-primary">
                         Create Account

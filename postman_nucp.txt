@@ -1,0 +1,10 @@
+Headers:
+	Content-Type: application/json
+Body
+	{
+		"fName": "test",
+		"lName": "ing",
+		"organization": "123",
+		"email": "test.ing@123.org",
+		"password": "123"
+	}

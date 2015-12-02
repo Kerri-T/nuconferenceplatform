@@ -44,7 +44,7 @@
                   })
                   .error(function (response) {
                       $alert({
-                          title: 'Error!',
+                          title: 'Error! The email address may already be registered. Please try a different email address.',
                           content: response.data,
                           placement: 'top-right',
                           type: 'danger',

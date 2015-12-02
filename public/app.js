@@ -8,11 +8,17 @@ App.config(['$routeProvider',
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
     }).
-	  when('/registration', {
+    when('/', {
+        templateUrl: 'views/home.html',
+    }).
+    when('/home', {
+        templateUrl: 'views/home.html',
+    }).
+    when('/registration', {
         templateUrl: 'views/registration.html',
         controller: 'registerCtrl'
-	  }).
-      otherwise({
+    }).
+    otherwise({
         redirectTo: '/'
-      });
-  }])
+    });
+}])

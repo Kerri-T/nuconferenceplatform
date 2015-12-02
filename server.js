@@ -1,4 +1,3 @@
-var tokenSecret = 'your unique secret';
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 var express = require('express');
@@ -13,6 +12,7 @@ var userSchema = new mongoose.Schema({
     fName: String, 
     lName: String,
     organization: String,
+    attendeetype: String,
     email: { type: String, unique: true },
     password: String,
 });
@@ -105,7 +105,8 @@ app.post('/api/register', function (req, res, next) {
         lName: req.body.lName,
         organization: req.body.organization,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        attendeetype: req.body.attendeetype
     });
     user.save(function (err) {
         if (err) return next(err);
