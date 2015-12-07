@@ -4,6 +4,18 @@
 <head>
 <script src="vendor/angular.js"></script>
 <script src="vendor/angular-cookies.js"></script>
+    <script src="vendor/angular-strap.js"></script>
+    <script src="vendor/angular-strap.tpl.js"></script>
+    <script src="vendor/angular-messages.js"></script>
+    <script src="vendor/angular-resource.js"></script>
+    <script src="vendor/angular-route.js"></script>
+    <script src="vendor/moment.min.js"></script>
+    <script src="app.js"></script>
+    <script src="directives/repeatPassword.js"></script>
+    <script src="controllers/register.js"></script>
+    <script src="controllers/login.js"></script>
+    <script src="controllers/navbar.js"></script>
+    <script src="services/auth.js"></script>
   <base href="">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,6 +35,13 @@
             <li data-match-route="/$"><a href="/#/home">Home</a></li>
             <li data-match-route="/registration"><a href="/#/registration">Registration</a></li>
         </ul>
+        <ul class="nav navbar-nav pull-left" ng-if="currentUser">
+            <li data-match-route="/sessions"><a href="/#/sessions">Sessions</a></li>
+            <li data-match-route="/chat"><a href="/#/chat">Chat</a></li>
+        </ul>
+        <ul class="nav navbar-nav pull-left" ng-if="currentUser">
+            <li data-match-route="/createsession" ng-if="currentUser.attendeetype == 'Speaker'"><a href="/#/createsession">Create Session</a></li>
+        </ul>
         <ul class="nav navbar-nav pull-right" ng-if="!currentUser">
             <li data-match-route="/login"><a href="/#/login">Login</a></li>
         </ul>
@@ -32,17 +51,5 @@
         </ul>
     </div>
 <div ng-view></div>
-<script src="vendor/angular-strap.js"></script>
-<script src="vendor/angular-strap.tpl.js"></script>
-<script src="vendor/angular-messages.js"></script>
-<script src="vendor/angular-resource.js"></script>
-<script src="vendor/angular-route.js"></script>
-<script src="vendor/moment.min.js"></script>
-<script src="app.js"></script>
-<script src="directives/repeatPassword.js"></script>
-<script src="controllers/register.js"></script>
-<script src="controllers/login.js"></script>
-<script src="controllers/navbar.js"></script>
-<script src="services/auth.js"></script>
 </body>
 </html>
