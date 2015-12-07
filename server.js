@@ -35,7 +35,17 @@ userSchema.methods.comparePassword = function (candidatePassword, cb) {
         cb(null, isMatch);
     });
 };
-
+var eventSchema = new mongoose.Schema({
+    _id: Number,
+    eventname: String,
+    speaker: String,
+    starttime: String,
+    endtime: Date,
+    description: [String],
+    attendees: [{
+        type: mongoose.Schema.Types.ObjectId, ref: 'User'
+    }],
+});
 var User = mongoose.model('User', userSchema);
 var event = mongoose.model('Event', eventSchema);
 mongoose.connect('mongodb://nimda:Pa55w0rd@ds054288.mongolab.com:54288/nucp');
