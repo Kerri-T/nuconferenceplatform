@@ -1,7 +1,7 @@
 ﻿<div class="container" >
     <br />
 
-    <div class="row" ng-if="currentUser.attendeetype == 'Speaker'">
+    <div class="row">
         <div class="center-form panel" style="width:500px;">
             <form method="post" ng-submit="addSession()" name="sessionForm">
                 <div class="panel-body">
@@ -46,13 +46,5 @@
             </form>
         </div>
     </div>
-    <div class="panel panel-default" ng-if="currentUser.attendeetype != 'Speaker'">
-        <div class="panel-body">
-            <div class="page-header">
-                <h1>Northwestern University Conference Platform</h1>
-            </div>
-            <p class="lead">Please log in as a speaker to create a session</p>
-        </div>
 
-    </div>
 </div>

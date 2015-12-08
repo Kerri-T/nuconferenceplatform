@@ -20,5 +20,7 @@
                     $scope.session.attendees.splice(index, 1);
                 });
             };
+
+            
         });
     }]);

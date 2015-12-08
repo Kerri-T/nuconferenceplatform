@@ -153,6 +153,27 @@ app.post('/api/createsession', function (req, res, next) {
         res.send(200);
     });
 });
+app.post('/api/addattendee', ensureAuthenticated, function (req, res, next) {
+    Session.findById(req.body.sessionID, function (err, session) {
+        if (err) return next(err);
+        session.attendees.push(req.user.id);
+        session.save(function (err) {
+            if (err) return next(err);
+            res.send(200);
+        });
+    });
+});
+app.post('/api/removeattendee', ensureAuthenticated, function (req, res, next) {
+    Session.findById(req.body.sessionID, function (err, session) {
+        if (err) return next(err);
+        var index = session.attendees.indexOf(req.user.id);
+        session.attendees.splice(index, 1);
+        session.save(function (err) {
+            if (err) return next(err);
+            res.send(200);
+        });
+    });
+});
 app.use(function (err, req, res, next) {
     console.error(err.stack);
     res.send(500, { message: err.message });
