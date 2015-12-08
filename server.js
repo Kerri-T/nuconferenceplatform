@@ -16,7 +16,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var sessionSchema = new mongoose.Schema({
     sessionname: { type: String, unique: true },
     sessiondescription: String,
-    sessiondate: [String],
+    sessiondate: { type: Date, default: '12/10/1990' },
     sessionstart: String,
     sessionend: String,
     speakerfname: String,

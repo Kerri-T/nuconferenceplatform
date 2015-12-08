@@ -35,6 +35,14 @@
                                 <td>{{session.speakeremail}}</td>
                             </tr>
                             <tr>
+                                <td width="100"><b>Date:</b></td>
+                                <td><span>{{session.sessiondate | date:'MM/dd/yyyy'}}</span></td>
+                            </tr>
+                            <tr>
+                                <td width="100"><b>Time:</b></td>
+                                <td>{{session.sessionstart}} - {{session.sessionend}}</td>
+                            </tr>
+                            <tr >
                                 <td width="100"><b>Description:</b></td>
                                 <td>{{session.sessiondescription}}</td>
                             </tr>
@@ -50,6 +58,18 @@
         </div>
         <div class="panel-body">
             <div class="attendee" ng-repeat="attendee in session.attendees">
+                <p>
+                    {{attendee}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" ng-if="currentUser">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-play"></span> Comments
+        </div>
+        <div class="panel-body">
+            <div class="attendee" ng-repeat="comment in session.comments">
                 <p>
                     {{attendee}}
                 </p>

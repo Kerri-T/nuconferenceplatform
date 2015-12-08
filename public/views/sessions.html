@@ -10,29 +10,31 @@
 </div>
 
 <div class="container" >
-    <div class="panel panel-default">
+    <div class="panel panel-default" ng-if="currentUser">
         <div class="panel-heading">
             {{headingTitle}}
             <div class="pull-right">
                 <input class="search" type="text" ng-model="query.sessionname" placeholder="Search...">
             </div>
         </div>
-        <div class="panel-body" >
+        <div class="panel-body">
             <div class="row show-list" style="margin-left:auto;margin-right:auto">
                 <table border="0" cellpadding="5" style="width:100%;" class="table ">
                     <thead>
                         <tr>
                             <th>Session Name</th>
                             <th>Speaker</th>
+                            <th>Date</th>
+                            <th>Time</th>
                             <th>Attendees</th>
-                            <th>Comments</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="session in sessions | filter:query ">
                             <td><a href="/sessions/{{session._id}}">{{session.sessionname}}</a></td>
                             <td>{{session.speakerfname}} {{session.speakerlname}}</td>
-                            <td>{{session.attendees.length}}</td>
+                            <td>{{session.sessiondate | date:'MM/dd/yyyy'}} </td>
+                            <td>{{session.sessionstart}} - {{session.sessionend}}</td>
                             <td>{{session.attendees.length}}</td>
                         </tr>
                     </tbody>
