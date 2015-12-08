@@ -7,7 +7,23 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
+var async = require('async');
+var async = require('async');
+var request = require('request');
+var xml2js = require('xml2js');
+var _ = require('lodash');
 var LocalStrategy = require('passport-local').Strategy;
+var sessionSchema = new mongoose.Schema({
+    sessionname: String,
+    sessiondescription: String,
+    sessiondate: [String],
+    sessionstart: String,
+    sessionend: String,
+    sessionspeaker: String,
+    attendees: [{
+        type: mongoose.Schema.Types.ObjectId, ref: 'User'
+    }]
+});
 var userSchema = new mongoose.Schema({
     fName: String, 
     lName: String,
@@ -35,8 +51,8 @@ userSchema.methods.comparePassword = function (candidatePassword, cb) {
         cb(null, isMatch);
     });
 };
-
 var User = mongoose.model('User', userSchema);
+var Session = mongoose.model('Session', sessionSchema);
 mongoose.connect('mongodb://nimda:Pa55w0rd@ds054288.mongolab.com:54288/nucp');
 var app = express();
 
@@ -106,17 +122,41 @@ app.get('/api/logout', function (req, res, next) {
     req.logout();
     res.send(200);
 });
-app.get('/api/events', function (req, res, next) {
-    var query = Show.find();
-    if (req.query.genre) {
-        query.where({ genre: req.query.genre });
-    } else if (req.query.alphabet) {
-        query.where({ name: new RegExp('^' + '[' + req.query.alphabet + ']', 'i') });
+app.get('/api/sessions', function (req, res, next) {
+    var query = Session.find();
+    if (req.query.alphabet) {
+        query.where({ sessionname: new RegExp('^' + '[' + req.query.alphabet + ']', 'i') });
     } else {
         query.limit(12);
     }
-    query.exec(function (err, shows) {
+    query.exec(function (err, sessions) {
         if (err) return next(err);
-        res.send(shows);
+        res.send(sessions);
     });
+});
+app.get('/api/sessions/:id', function (req, res, next) {
+    Session.findById(req.params.id, function (err, session) {
+        if (err) return next(err);
+        res.send(session);
+    });
+});
+app.post('/api/createsession', function (req, res, next) {
+    var session = new Session({
+        sessionname: req.body.sessionname,
+        sessiondescription: req.body.sessiondescription,
+        sessiondate: req.body.sessiondate,
+        sessionstart: req.body.sessionstart,
+        sessionend: req.body.sessionend
+    });
+    session.save(function (err) {
+        if (err) return next(err);
+        res.send(200);
+    });
+});
+app.use(function (err, req, res, next) {
+    console.error(err.stack);
+    res.send(500, { message: err.message });
+});
+app.get('*', function (req, res) {
+    res.redirect('/#' + req.originalUrl);
 });

@@ -18,6 +18,18 @@ App.config(['$routeProvider',
         templateUrl: 'views/registration.html',
         controller: 'registerCtrl'
     }).
+    when('/sessions', {
+        templateUrl: 'views/sessions.html',
+        controller: 'SessionsCtrl'
+    }).
+    when('/createsession', {
+        templateUrl: 'views/createsession.html',
+        controller: 'addSessionCtrl'
+    }).
+    when('/sessions/:id', {
+        templateUrl: 'views/session.html',
+        controller: 'sessionDetailCtrl'
+    }).
     otherwise({
         redirectTo: '/'
     });

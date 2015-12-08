@@ -1,0 +1,42 @@
+﻿<div class="container">
+    <div class="panel panel-default" ng-if="currentUser">
+        <div class=" panel-body">
+            <div class="media">
+                <div class="pull-left">
+                    <div class="text-center" ng-if="currentUser">
+                        <div ng-show="!isAttending()">
+                            <button ng-click="attend()" class="btn btn-block btn-success">
+                                <span class="glyphicon glyphicon-plus"></span> Attend
+                            </button>
+                        </div>
+                        <div ng-show="isAttending()">
+                            <button ng-click="removeattendance()" class="btn btn-block btn-danger">
+                                <span class="glyphicon glyphicon-minus"></span> Remove Attendee
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-center" ng-show="!currentUser">
+                        <a class="btn btn-block btn-primary" href="#/login">Login to attend event</a>
+                    </div>
+                </div>
+                <div class="media-body">
+                    <h2 class="media-heading">
+                        {{session.sessionname}}
+
+                    </h2>
+
+                    <p>{{session.sessiondescription}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" ng-if="!currentUser">
+        <div class="panel-body">
+            <div class="page-header">
+                <h1>Northwestern University Conference Platform</h1>
+            </div>
+            <p class="lead">Please log in as a speaker to create a session</p>
+        </div>
+
+    </div>
+</div>

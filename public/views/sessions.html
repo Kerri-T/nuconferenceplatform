@@ -1,0 +1,42 @@
+﻿<div class="jumbotron" ng-if="currentUser">
+    <div class="container">
+        <ul class="alphabet">
+            <li ng-repeat="char in alphabet">
+                <span ng-click="filterByAlphabet(char)">{{char}}</span>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+<div class="container" >
+    <div class="panel panel-default" ng-if="currentUser">
+        <div class="panel-heading">
+            {{headingTitle}}
+            <div class="pull-right">
+                <input class="search" type="text" ng-model="query.sessionname" placeholder="Search...">
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row show-list">
+                <div class="col-xs-4 col-md-3" ng-repeat="session in sessions | filter:query | orderBy:'rating':true">
+                    <a href="/sessions/{{session._id}}">
+                    </a>
+                    <div class="text-center">
+                        <a href="/sessions/{{session._id}}">{{session.sessionname}}</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" ng-if="!currentUser">
+        <div class="panel-body">
+            <div class="page-header">
+                <h1>Northwestern University Conference Platform</h1>
+            </div>
+            <p class="lead">Please log in to view the sessions</p>
+        </div>
+
+    </div>
+</div>

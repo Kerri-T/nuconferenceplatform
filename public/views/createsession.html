@@ -1,0 +1,58 @@
+﻿<div class="container" >
+    <br />
+
+    <div class="row" ng-if="currentUser.attendeetype == 'Speaker'">
+        <div class="center-form panel" style="width:500px;">
+            <form method="post" ng-submit="addSession()" name="sessionForm">
+                <div class="panel-body">
+                    <h2 class="text-center">Create a Session:</h2>
+                    <div class="form-group" ng-class="{ 'has-success' : sessionForm.sessionname.$valid && sessionForm.sessionname.$dirty, 'has-error' : sessionForm.sessionname.$invalid && sessionForm.sessionname.$dirty }">
+                        <input class="form-control input-lg" type="text" id="sessionname" name="sessionname" ng-model="sessionname" placeholder="Session Name" required autofocus>
+                        <div class="help-block text-danger" ng-if="sessionForm.sessionname.$dirty"
+                             ng-messages="sessionForm.sessionname.$error">
+                            <div ng-message="required">The session name is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-success' : sessionForm.sessiondescription.$valid && sessionForm.sessiondescription.$dirty, 'has-error' : sessionForm.sessiondescription.$invalid && sessionForm.sessiondescription.$dirty }">
+                        <input class="form-control input-lg" type="text" id="sessiondescription" name="sessiondescription" ng-model="sessiondescription" placeholder="Session Description" required autofocus>
+                        <div class="help-block text-danger" ng-if="sessionForm.sessiondescription.$dirty"
+                             ng-messages="sessionForm.sessiondescription.$error">
+                            <div ng-message="required">The session description is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-success' : sessionForm.sessionstart.$valid && sessionForm.sessionstart.$dirty, 'has-error' : sessionForm.sessionstart.$invalid && sessionForm.sessionstart.$dirty }">
+                        <input class="form-control input-lg" type="text" id="sessionstart" name="sessionstart" ng-model="sessionstart" placeholder="Session Start Time" required autofocus>
+                        <div class="help-block text-danger" ng-if="sessionForm.sessionend.$dirty"
+                             ng-messages="sessionForm.sessionend.$error">
+                            <div ng-message="required">The session start time is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-success' : sessionForm.sessionend.$valid && sessionForm.sessionend.$dirty, 'has-error' : sessionForm.sessionend.$invalid && sessionForm.sessionend.$dirty }">
+                        <input class="form-control input-lg" type="text" id="sessionend" name="sessionend" ng-model="sessionend" placeholder="Session End Time" required autofocus>
+                        <div class="help-block text-danger" ng-if="sessionForm.sessionstart.$dirty"
+                             ng-messages="sessionForm.sessionend.$error">
+                            <div ng-message="required">The session end time is required.</div>
+                        </div>
+                    </div>
+
+                    <button type="submit" ng-disabled="sessionForm.$invalid"
+                            class="btn btn-lg btn-block btn-primary">
+                        Create Session
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel panel-default" ng-if="currentUser.attendeetype != 'Speaker'">
+        <div class="panel-body">
+            <div class="page-header">
+                <h1>Northwestern University Conference Platform</h1>
+            </div>
+            <p class="lead">Please log in as a speaker to create a session</p>
+        </div>
+
+    </div>
+</div>
