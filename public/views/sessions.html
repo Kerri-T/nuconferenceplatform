@@ -19,7 +19,7 @@
         </div>
         <div class="panel-body">
             <div class="row show-list">
-                <div class="col-xs-4 col-md-3" ng-repeat="session in sessions | filter:query | orderBy:'rating':true">
+                <div class="col-xs-4 col-md-3" ng-repeat="session in sessions | filter:query ">
                     <a href="/sessions/{{session._id}}">
                     </a>
                     <div class="text-center">

@@ -5,7 +5,7 @@
         'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
         'Y', 'Z'];
 
-      $scope.headingTitle = 'Top 12 Sessions';
+      $scope.headingTitle = 'Recent Sessions';
 
       $scope.sessions = Session.query();
 

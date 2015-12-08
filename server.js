@@ -21,7 +21,7 @@ var sessionSchema = new mongoose.Schema({
     sessionend: String,
     sessionspeaker: String,
     attendees: [{
-        type: mongoose.Schema.Types.ObjectId, ref: 'User'
+        type: mongoose.Schema.Types.String, ref: 'User'
     }]
 });
 var userSchema = new mongoose.Schema({
@@ -156,7 +156,7 @@ app.post('/api/createsession', function (req, res, next) {
 app.post('/api/addattendee', ensureAuthenticated, function (req, res, next) {
     Session.findById(req.body.sessionID, function (err, session) {
         if (err) return next(err);
-        session.attendees.push(req.user.id);
+        session.attendees.push(req.user.email);
         session.save(function (err) {
             if (err) return next(err);
             res.send(200);
@@ -166,7 +166,7 @@ app.post('/api/addattendee', ensureAuthenticated, function (req, res, next) {
 app.post('/api/removeattendee', ensureAuthenticated, function (req, res, next) {
     Session.findById(req.body.sessionID, function (err, session) {
         if (err) return next(err);
-        var index = session.attendees.indexOf(req.user.id);
+        var index = session.attendees.indexOf(req.user.email);
         session.attendees.splice(index, 1);
         session.save(function (err) {
             if (err) return next(err);
