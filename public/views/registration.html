@@ -7,24 +7,24 @@
                 <div class="panel-body">
                     <h2 class="text-center">Event Registration</h2>
                     <div class="form-group"
-                         ng-class="{ 'has-success' : registerForm.fname.$valid && registerForm.fname.$dirty, 'has-error' : registerForm.fname.$invalid && registerForm.fname.$dirty }">
-                        <input class="form-control input-lg" type="text" id="fname"
-                               name="fname" ng-model="fname" placeholder="First Name" required
+                         ng-class="{ 'has-success' : registerForm.firstName.$valid && registerForm.firstName.$dirty, 'has-error' : registerForm.firstName.$invalid && registerForm.firstName.$dirty }">
+                        <input class="form-control input-lg" type="text" id="firstName"
+                               name="firstName" ng-model="firstName" placeholder="First Name" required
                                autofocus>
 
-                        <div class="help-block text-danger" ng-if="registerForm.email.$dirty"
-                             ng-messages="registerForm.email.$error">
+                        <div class="help-block text-danger" ng-if="registerForm.fname.$dirty"
+                             ng-messages="registerForm.fname.$error">
                             <div ng-message="required">Your first name is required.</div>
                         </div>
                     </div>
                     <div class="form-group"
-                         ng-class="{ 'has-success' : registerForm.lname.$valid && registerForm.lname.$dirty, 'has-error' : registerForm.lname.$invalid && registerForm.lname.$dirty }">
-                        <input class="form-control input-lg" type="text" id="lname"
-                               name="lname" ng-model="lname" placeholder="Last Name" required
+                         ng-class="{ 'has-success' : registerForm.lastName.$valid && registerForm.lastName.$dirty, 'has-error' : registerForm.lastName.$invalid && registerForm.lastName.$dirty }">
+                        <input class="form-control input-lg" type="text" id="lastName"
+                               name="lastName" ng-model="lastName" placeholder="Last Name" required
                                autofocus>
 
-                        <div class="help-block text-danger" ng-if="registerForm.email.$dirty"
-                             ng-messages="registerForm.email.$error">
+                        <div class="help-block text-danger" ng-if="registerForm.lastName.$dirty"
+                             ng-messages="registerForm.lastName.$error">
                             <div ng-message="required">Your last name is required.</div>
                         </div>
                     </div>
@@ -34,8 +34,8 @@
                                name="organization" ng-model="organization" placeholder="Organization" required
                                autofocus>
 
-                        <div class="help-block text-danger" ng-if="registerForm.email.$dirty"
-                             ng-messages="registerForm.email.$error">
+                        <div class="help-block text-danger" ng-if="registerForm.organization.$dirty"
+                             ng-messages="registerForm.organization.$error">
                             <div ng-message="required">Your organization is required.</div>
                         </div>
                     </div>

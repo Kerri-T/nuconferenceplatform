@@ -14,19 +14,21 @@ var xml2js = require('xml2js');
 var _ = require('lodash');
 var LocalStrategy = require('passport-local').Strategy;
 var sessionSchema = new mongoose.Schema({
-    sessionname: String,
+    sessionname: { type: String, unique: true },
     sessiondescription: String,
     sessiondate: [String],
     sessionstart: String,
     sessionend: String,
-    sessionspeaker: String,
+    speakerfname: String,
+    speakerlname: String,
+    speakeremail: String,
     attendees: [{
         type: mongoose.Schema.Types.String, ref: 'User'
     }]
 });
 var userSchema = new mongoose.Schema({
-    fName: String, 
-    lName: String,
+    firstName: String, 
+    lastName: String,
     organization: String,
     attendeetype: String,
     email: { type: String, unique: true },
@@ -106,8 +108,8 @@ app.post('/api/login', passport.authenticate('local'), function (req, res) {
 });
 app.post('/api/register', function (req, res, next) {
     var user = new User({
-        fName: req.body.fName,
-        lName: req.body.lName,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         organization: req.body.organization,
         email: req.body.email,
         password: req.body.password,
@@ -146,7 +148,10 @@ app.post('/api/createsession', function (req, res, next) {
         sessiondescription: req.body.sessiondescription,
         sessiondate: req.body.sessiondate,
         sessionstart: req.body.sessionstart,
-        sessionend: req.body.sessionend
+        sessionend: req.body.sessionend,
+        speakerfname: req.body.speakerfname,
+        speakerlname: req.body.speakerlname,
+        speakeremail: req.body.speakeremail
     });
     session.save(function (err) {
         if (err) return next(err);

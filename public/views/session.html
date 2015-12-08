@@ -2,32 +2,45 @@
     <div class="panel panel-default" ng-if="currentUser">
         <div class=" panel-body">
             <div class="media">
-                <div class="pull-right">
-                    <div class="text-center" ng-if="currentUser">
-                        <div ng-show="!isAttending()">
-                            <button ng-click="addattendee()" class="btn btn-block btn-success" style="padding-right:5px;padding-left:5px">
-                                <span class="glyphicon glyphicon-plus"></span> Attend Event
-                            </button>
-                        </div>
-                        <div ng-show="isAttending()">
-                            <button ng-click="removeattendee()" class="btn btn-block btn-danger" style="padding-right:5px;padding-left:5px">
-                                <span class="glyphicon glyphicon-minus"></span> Remove Attendee
-                            </button>
-                        </div>
-                    </div>
-                    <div class="text-center" ng-show="!currentUser">
-                        <a class="btn btn-block btn-primary" href="#/login">Login to attend event</a>
-                    </div>
-                </div>
                 <div class="media-body">
-                    <h2 class="media-heading">
-                        {{session.sessionname}}
+                    <div class="page-header">
+                        <div class="pull-right">
+                            <div class="text-center" ng-if="currentUser">
+                                <div ng-show="!isAttending()">
+                                    <button ng-click="addattendee()" class="btn btn-block btn-success" style="padding-right:5px;padding-left:5px">
+                                        <span class="glyphicon glyphicon-plus"></span> Attend Event
+                                    </button>
+                                </div>
+                                <div ng-show="isAttending()">
+                                    <button ng-click="removeattendee()" class="btn btn-block btn-danger" style="padding-right:5px;padding-left:5px">
+                                        <span class="glyphicon glyphicon-minus"></span> Remove Attendance
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="text-center" ng-show="!currentUser">
+                                <a class="btn btn-block btn-primary" href="#/login">Login to attend event</a>
+                            </div>
+                        </div>
+                        <h2 class="media-heading">
+                            {{session.sessionname}}
 
-                    </h2>
-                    
-                    <p>{{session.sessiondescription}}</p>
-                
-                </div>
+                        </h2></div>
+                        <table border="0">
+                            <tr>
+                                <td width="100"><b>Hosted by:</b></td>
+                                <td>{{session.speakerfname}} {{session.speakerlname}}</td>
+                            </tr>
+                            <tr>
+                                <td width="100"><b>Contact:</b></td>
+                                <td>{{session.speakeremail}}</td>
+                            </tr>
+                            <tr>
+                                <td width="100"><b>Description:</b></td>
+                                <td>{{session.sessiondescription}}</td>
+                            </tr>
+                        </table>
+                        <br />
+                    </div>
             </div>
         </div>
     </div>
@@ -48,7 +61,7 @@
             <div class="page-header">
                 <h1>Northwestern University Conference Platform</h1>
             </div>
-            <p class="lead">Please log in to view a session.</p>
+            <p class="lead">Please log in to view the session details.</p>
         </div>
 
     </div>

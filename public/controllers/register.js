@@ -2,8 +2,8 @@
   .controller('registerCtrl', ['$scope', 'Auth', function ($scope, Auth) {
       $scope.register = function () {
           Auth.register({
-              fname: $scope.fname,
-              lname: $scope.lname,
+              firstName: $scope.firstName,
+              lastName: $scope.lastName,
               email: $scope.email,
               attendeetype: $scope.attendeetype,
               organization: $scope.organization,
