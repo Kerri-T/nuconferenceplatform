@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    <div class="panel panel-default">
+    <div class="panel panel-default" ng-if="currentUser">
         <div class="panel-heading">
             <span class="glyphicon glyphicon-play"></span> Attendees
         </div>
@@ -39,8 +39,8 @@
             <div class="attendee" ng-repeat="attendee in session.attendees">
                 <p>
                     {{attendee}}
-                    </p>
-</div>
+                </p>
+            </div>
         </div>
     </div>
     <div class="panel panel-default" ng-if="!currentUser">
