@@ -1,7 +1,7 @@
-﻿<div class="container" ng-if="currentUser">
+﻿<div class="container" >
     <br />
 
-    <div class="row">
+    <div class="row" ng-if="currentUser">
         <div class="center-form panel" style="width:500px;">
             <form method="post" ng-submit="addSession()" name="sessionForm">
                 <div class="panel-body">
