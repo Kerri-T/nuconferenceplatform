@@ -12,7 +12,7 @@
 
                       $alert({
                           title: 'Congratulations!',
-                          content: 'Your succession has been created.',
+                          content: 'Your session has been created.',
                           placement: 'top-right',
                           type: 'success',
                           duration: 3
