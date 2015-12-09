@@ -12,6 +12,7 @@ var async = require('async');
 var request = require('request');
 var xml2js = require('xml2js');
 var _ = require('lodash');
+var sslRedirect = require('heroku-ssl-redirect');
 var LocalStrategy = require('passport-local').Strategy;
 var sessionSchema = new mongoose.Schema({
     sessionname: { type: String, unique: true },
@@ -61,7 +62,11 @@ var User = mongoose.model('User', userSchema);
 var Session = mongoose.model('Session', sessionSchema);
 mongoose.connect('mongodb://nimda:Pa55w0rd@ds054288.mongolab.com:54288/nucp');
 var app = express();
-
+app.use(sslRedirect([
+  'other',
+  'development',
+  'production'
+]));
 app.set('port', process.env.PORT || 3000);
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -77,12 +82,7 @@ app.use(function (req, res, next) {
     }
     next();
 });
-app.use(function (req, res, next) {
-    if (req.headers['x-forwarded-proto'] !== 'https') {
-        return res.redirect(['https://', req.get('Host'), req.url].join(''));
-    }
-    return next();
-});
+
 app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });
