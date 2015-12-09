@@ -77,13 +77,12 @@ app.use(function (req, res, next) {
     }
     next();
 });
-var forceSsl = function (req, res, next) {
+app.use(function (req, res, next) {
     if (req.headers['x-forwarded-proto'] !== 'https') {
         return res.redirect(['https://', req.get('Host'), req.url].join(''));
     }
     return next();
-};
-app.use(forceSsl);
+});
 app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });
