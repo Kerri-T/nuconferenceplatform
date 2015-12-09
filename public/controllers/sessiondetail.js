@@ -15,6 +15,7 @@
             $scope.addcomment = function () {
                 Attendee.addcomment(session, $scope.commentbody).success(function () {
                     $scope.session.comments.push({ commentbody: $scope.commentbody, sender: $rootScope.currentUser.email });
+                    $scope.commentbody = "";
                 });
             };
             $scope.removeattendee = function () {
