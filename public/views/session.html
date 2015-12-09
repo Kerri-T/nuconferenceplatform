@@ -71,7 +71,7 @@
         </div>
         <div class="panel-body">
             <p ng-if="session.comments.length < 1">There are currently no comments for this session. Please write a comment to start the conversation!</p>
-                <table border="0" cellpadding="5" style="width:75%; overflow-wrap:normal" class="table" ng-if="session.comments.length > 0">
+                <table border="0" cellpadding="5" style="width:75%;table-layout:fixed" class="table" ng-if="session.comments.length > 0">
                     <thead>
                         <tr>
                             <th>Email</th>
@@ -81,14 +81,14 @@
                     <tbody>
                         <tr ng-repeat="comment in session.comments">
                             <td width="25%">{{comment.sender}}</td>
-                            <td>{{comment.commentbody}}</td>
+                            <td width="75%" style="word-wrap:break-word">{{comment.commentbody}}</td>
                         </tr>
                     </tbody>
                 </table>
                 <div>
 <p>
                     <hr />
-                    <div class="input-group col-lg-8 pull-left">
+                    <div class="input-group col-lg-9 pull-left">
                         <textarea class="form-control" rows="2" style="resize:none" ng-model="$parent.commentbody" placeholder="Write a comment or question for the speaker"></textarea>
                         <span class="input-group-addon btn btn-default" ng-click="addcomment()" ng-disabled="!(!!$parent.commentbody)"><span class=" glyphicon glyphicon-plus"></span> Comment</span>
                     </div>
