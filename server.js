@@ -24,6 +24,10 @@ var sessionSchema = new mongoose.Schema({
     speakeremail: String,
     attendees: [{
         type: mongoose.Schema.Types.String, ref: 'User'
+    }],
+    comments: [{
+        commentbody: String,
+        sender: String
     }]
 });
 var userSchema = new mongoose.Schema({
@@ -162,6 +166,16 @@ app.post('/api/addattendee', ensureAuthenticated, function (req, res, next) {
     Session.findById(req.body.sessionID, function (err, session) {
         if (err) return next(err);
         session.attendees.push(req.user.email);
+        session.save(function (err) {
+            if (err) return next(err);
+            res.send(200);
+        });
+    });
+});
+app.post('/api/addcomment', function (req, res, next) {
+    Session.findById(req.body.sessionID, function (err, session) {
+        if (err) return next(err);
+        session.comments.push({ commentbody: req.body.commentbody, sender: req.user.email });
         session.save(function (err) {
             if (err) return next(err);
             res.send(200);

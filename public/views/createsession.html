@@ -1,4 +1,4 @@
-﻿<div class="container" >
+﻿<div class="container" ng-if="currentUser">
     <br />
 
     <div class="row">
@@ -7,7 +7,7 @@
                 <div class="panel-body">
                     <h2 class="text-center">Create a Session:</h2>
                     <div class="form-group" ng-class="{ 'has-success' : sessionForm.sessionname.$valid && sessionForm.sessionname.$dirty, 'has-error' : sessionForm.sessionname.$invalid && sessionForm.sessionname.$dirty }">
-                        <input class="form-control input-lg" type="text" id="sessionname" name="sessionname" ng-model="sessionname" placeholder="Session Name" required autofocus>
+                        <input class="form-control input-lg" type="text" id="sessionname" name="sessionname" ng-model="$parent.sessionname" placeholder="Session Name" required autofocus>
                         <div class="help-block text-danger" ng-if="sessionForm.sessionname.$dirty"
                              ng-messages="sessionForm.sessionname.$error">
                             <div ng-message="required">The session name is required.</div>
@@ -15,21 +15,21 @@
                     </div>
 
                     <div class="form-group" ng-class="{ 'has-success' : sessionForm.sessiondescription.$valid && sessionForm.sessiondescription.$dirty, 'has-error' : sessionForm.sessiondescription.$invalid && sessionForm.sessiondescription.$dirty }">
-                        <input class="form-control input-lg" type="text" id="sessiondescription" name="sessiondescription" ng-model="sessiondescription" placeholder="Session Description" required autofocus>
+                        <input class="form-control input-lg" type="text" id="sessiondescription" name="sessiondescription" ng-model="$parent.sessiondescription" placeholder="Session Description" required autofocus>
                         <div class="help-block text-danger" ng-if="sessionForm.sessiondescription.$dirty"
                              ng-messages="sessionForm.sessiondescription.$error">
                             <div ng-message="required">The session description is required.</div>
                         </div>
                     </div>
                     <div class="form-group" ng-class="{ 'has-success' : sessionForm.sessiondate.$valid && sessionForm.sessionstart.$dirty, 'has-error' : sessionForm.sessiondate.$invalid && sessionForm.sessiondate.$dirty }">
-                        <input class="form-control input-lg" type="date" id="sessiondate" name="sessiondate" ng-model="sessiondate" placeholder="Session Date - MM/DD/YYYY" required autofocus>
+                        <input class="form-control input-lg" type="date" id="sessiondate" name="sessiondate" ng-model="$parent.sessiondate" placeholder="Session Date - MM/DD/YYYY" required autofocus>
                         <div class="help-block text-danger" ng-if="sessionForm.sessiondate.$dirty"
                              ng-messages="sessionForm.sessiondate.$error">
                             <div ng-message="required">The session date is required.</div>
                         </div>
                     </div>
                     <div class="form-group" ng-class="{ 'has-success' : sessionForm.sessionstart.$valid && sessionForm.sessionstart.$dirty, 'has-error' : sessionForm.sessionstart.$invalid && sessionForm.sessionstart.$dirty }">
-                        <input class="form-control input-lg" type="text" id="sessionstart" name="sessionstart" ng-model="sessionstart" placeholder="Session Start Time - HH:MM AM/PM" ng-required="timeRequired" ng-pattern="timePattern" autofocus>
+                        <input class="form-control input-lg" type="text" id="sessionstart" name="sessionstart" ng-model="$parent.sessionstart" placeholder="Session Start Time - HH:MM AM/PM" ng-required="timeRequired" ng-pattern="timePattern" autofocus>
                         <div class="help-block text-danger" ng-if="sessionForm.sessionend.$dirty"
                              ng-messages="sessionForm.sessionend.$error">
                             <div ng-message="required">The session start time is either empty or not in the correct format..</div>
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="form-group" ng-class="{ 'has-success' : sessionForm.sessionend.$valid && sessionForm.sessionend.$dirty, 'has-error' : sessionForm.sessionend.$invalid && sessionForm.sessionend.$dirty }">
-                        <input class="form-control input-lg" type="text" id="sessionend" name="sessionend" ng-model="sessionend" placeholder="Session End Time - HH:MM AM/PM" ng-required="timeRequired" ng-pattern="timePattern" autofocus>
+                        <input class="form-control input-lg" type="text" id="sessionend" name="sessionend" ng-model="$parent.sessionend" placeholder="Session End Time - HH:MM AM/PM" ng-required="timeRequired" ng-pattern="timePattern" autofocus>
                         <div class="help-block text-danger" ng-if="sessionForm.sessionstart.$dirty"
                              ng-messages="sessionForm.sessionend.$error">
                             <div ng-message="required">The session end time is either empty or not in the correct format.</div>
@@ -52,5 +52,13 @@
             </form>
         </div>
     </div>
+    <div class="panel panel-default" ng-if="!currentUser">
+        <div class="panel-body">
+            <div class="page-header">
+                <h1>Northwestern University Conference Platform</h1>
+            </div>
+            <p class="lead">Please log in to view the session details.</p>
+        </div>
 
+    </div>
 </div>

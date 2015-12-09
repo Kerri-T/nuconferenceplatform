@@ -7,12 +7,12 @@
                         <div class="pull-right">
                             <div class="text-center" ng-if="currentUser">
                                 <div ng-show="!isAttending()">
-                                    <button ng-click="addattendee()" class="btn btn-block btn-success" style="padding-right:5px;padding-left:5px">
+                                    <button ng-click="addattendee()" class="btn btn-block btn-success" style="padding-right:10px;padding-left:5px">
                                         <span class="glyphicon glyphicon-plus"></span> Attend Event
                                     </button>
                                 </div>
                                 <div ng-show="isAttending()">
-                                    <button ng-click="removeattendee()" class="btn btn-block btn-danger" style="padding-right:5px;padding-left:5px">
+                                    <button ng-click="removeattendee()" class="btn btn-block btn-danger" style="padding-right:10px;padding-left:5px">
                                         <span class="glyphicon glyphicon-minus"></span> Remove Attendance
                                     </button>
                                 </div>
@@ -24,31 +24,32 @@
                         <h2 class="media-heading">
                             {{session.sessionname}}
 
-                        </h2></div>
-                        <table border="0">
-                            <tr>
-                                <td width="100"><b>Hosted by:</b></td>
-                                <td>{{session.speakerfname}} {{session.speakerlname}}</td>
-                            </tr>
-                            <tr>
-                                <td width="100"><b>Contact:</b></td>
-                                <td>{{session.speakeremail}}</td>
-                            </tr>
-                            <tr>
-                                <td width="100"><b>Date:</b></td>
-                                <td><span>{{session.sessiondate | date:'MM/dd/yyyy'}}</span></td>
-                            </tr>
-                            <tr>
-                                <td width="100"><b>Time:</b></td>
-                                <td>{{session.sessionstart}} - {{session.sessionend}}</td>
-                            </tr>
-                            <tr >
-                                <td width="100"><b>Description:</b></td>
-                                <td>{{session.sessiondescription}}</td>
-                            </tr>
-                        </table>
-                        <br />
+                        </h2>
                     </div>
+                    <table border="0">
+                        <tr>
+                            <td width="100"><b>Hosted by:</b></td>
+                            <td>{{session.speakerfname}} {{session.speakerlname}}</td>
+                        </tr>
+                        <tr>
+                            <td width="100"><b>Contact:</b></td>
+                            <td>{{session.speakeremail}}</td>
+                        </tr>
+                        <tr>
+                            <td width="100"><b>Date:</b></td>
+                            <td><span>{{session.sessiondate | date:'MM/dd/yyyy'}}</span></td>
+                        </tr>
+                        <tr>
+                            <td width="100"><b>Time:</b></td>
+                            <td>{{session.sessionstart}} - {{session.sessionend}}</td>
+                        </tr>
+                        <tr>
+                            <td width="100"><b>Description:</b></td>
+                            <td>{{session.sessiondescription}}</td>
+                        </tr>
+                    </table>
+                    <br />
+                </div>
             </div>
         </div>
     </div>
@@ -69,9 +70,29 @@
             <span class="glyphicon glyphicon-play"></span> Comments
         </div>
         <div class="panel-body">
-            <div class="attendee" ng-repeat="comment in session.comments">
-                <p>
-                    {{attendee}}
+            <p ng-if="session.comments.length < 1">There are currently no comments for this session. Please write a comment to start the conversation!</p>
+                <table border="0" cellpadding="5" style="width:75%;" class="table" ng-if="session.comments.length > 0">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="comment in session.comments">
+                            <td width="25%">{{comment.sender}}</td>
+                            <td>{{comment.commentbody}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+<p>
+                    <hr />
+                    <div class="input-group col-lg-6 pull-left">
+                        <textarea class="form-control" rows="2" style="resize:none" ng-model="$parent.commentbody" placeholder="Write a comment or question for the speaker"></textarea>
+                        <span class="input-group-addon btn btn-default" ng-click="addcomment()" ng-disabled="!(!!$parent.commentbody)"><span class=" glyphicon glyphicon-plus"></span> Comment</span>
+                    </div>
+
                 </p>
             </div>
         </div>
