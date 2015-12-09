@@ -71,7 +71,7 @@
         </div>
         <div class="panel-body">
             <p ng-if="session.comments.length < 1">There are currently no comments for this session. Please write a comment to start the conversation!</p>
-                <table border="0" cellpadding="5" style="width:75%;" class="table" ng-if="session.comments.length > 0">
+                <table border="0" cellpadding="5" style="width:75%; overflow-wrap" class="table" ng-if="session.comments.length > 0">
                     <thead>
                         <tr>
                             <th>Email</th>
